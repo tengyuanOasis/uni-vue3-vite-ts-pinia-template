@@ -1,0 +1,161 @@
+{
+  "parser": "vue-eslint-parser",
+  "extends": [
+      "prettier",
+      "eslint:recommended",
+      "plugin:vue/essential",
+      "plugin:@typescript-eslint/recommended",
+      "eslint-config-airbnb-base",
+      "@vue/typescript/recommended",
+      "plugin:vue/vue3-recommended",
+      "plugin:vue-scoped-css/base",
+      "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "sourceType": "module",
+      "project": ["./tsconfig.json", "./tsconfig.node.json"],
+      "extraFileExtensions": [".vue"],
+      "ecmaFeatures": {
+          "jsx": true
+      }
+  },
+  "plugins": ["vue", "prettier", "@typescript-eslint", "simple-import-sort"],
+  // 全局变量
+  "globals": {
+      "uni": true,
+      "wx": true,
+      "my": true,
+      "onLoad": true,
+      "useStore": true
+  },
+  "rules": {
+      "eqeqeq": 2, // 强制使用 === 和 !==
+      "default-case": 1, // 要求 switch 语句中有 default 分支
+      "no-else-return": 1, // 禁止 if 语句中 return 语句之后有 else 块
+      "no-empty-function": 1, // 禁止出现空函数
+      "no-multi-spaces": 1, // 禁止使用多个空格
+      "radix": 1, // 强制在parseInt()使用基数参数
+      "no-var": 1, // 要求使用 let 或 const 而不是 var
+      "no-console": "off",
+      "no-continue": "off",
+      "no-restricted-syntax": "off",
+      "no-plusplus": "off",
+      "no-param-reassign": "off",
+      "no-shadow": "off",
+      "guard-for-in": "off",
+      "import/extensions": "off",
+      "import/no-unresolved": "off",
+      "import/no-extraneous-dependencies": "off",
+      "import/prefer-default-export": "off",
+      "import/first": "off", // https://github.com/vuejs/vue-eslint-parser/issues/58
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "vue/first-attribute-linebreak": 0,
+      "@typescript-eslint/quotes": [
+          "error",
+          "single",
+          {
+              "allowTemplateLiterals": true
+          }
+      ],
+      "no-empty": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-unused-vars": "off",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/ban-types": "off",
+      "class-methods-use-this": "off", // 因为AxiosCancel必须实例化而能静态化所以加的规则，如果有办法解决可以取消
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "@typescript-eslint/naming-convention": [
+          "error",
+          {
+              "selector": "interface",
+              "format": ["PascalCase"],
+              "custom": {
+                  "regex": "^I[A-Z]",
+                  "match": true
+              }
+          },
+          {
+              "selector": "enum",
+              "format": ["PascalCase"]
+          },
+          {
+              "selector": "enum",
+              "format": ["PascalCase"]
+          },
+          {
+              "selector": "variable",
+              "format": ["UPPER_CASE", "camelCase"]
+          },
+          {
+              "selector": "variable",
+              "modifiers": ["exported"],
+              "format": ["UPPER_CASE"],
+              "types": ["boolean", "string", "number", "array"]
+          },
+          {
+              "selector": "variable",
+              "modifiers": ["exported"],
+              "format": ["camelCase", "PascalCase"],
+              "types": ["function"]
+          },
+          {
+              "selector": "variable",
+              "modifiers": ["global"],
+              "format": ["UPPER_CASE", "PascalCase", "camelCase"]
+          },
+          {
+              "selector": "typeAlias",
+              "format": ["PascalCase"]
+          }
+      ]
+  },
+  "overrides": [
+      {
+          "files": ["*.vue"],
+          "rules": {
+              "vue/component-name-in-template-casing": [2, "kebab-case"],
+              "vue/require-default-prop": 0,
+              "vue/multi-word-component-names": 0,
+              "vue/no-reserved-props": 0,
+              "vue/no-v-html": 0,
+              "vue-scoped-css/enforce-style-type": ["error", { "allows": ["scoped"] }]
+          },
+          "parserOptions": {
+              "ecmaFeatures": {
+                  "jsx": true
+              }
+          }
+      },
+      {
+          "files": ["*.ts", "*.tsx"], // https://github.com/typescript-eslint eslint-recommended
+          "rules": {
+              "constructor-super": "off", // ts(2335) & ts(2377)
+              "getter-return": "off", // ts(2378)
+              "no-const-assign": "off", // ts(2588)
+              "no-dupe-args": "off", // ts(2300)
+              "no-dupe-class-members": "off", // ts(2393) & ts(2300)
+              "no-dupe-keys": "off", // ts(1117)
+              "no-func-assign": "off", // ts(2539)
+              "no-import-assign": "off", // ts(2539) & ts(2540)
+              "no-new-symbol": "off", // ts(2588)
+              "no-obj-calls": "off", // ts(2349)
+              "no-redeclare": "off", // ts(2451)
+              "no-setter-return": "off", // ts(2408)
+              "no-this-before-super": "off", // ts(2376)
+              "no-undef": "off", // ts(2304)
+              "no-unreachable": "off", // ts(7027)
+              "no-unsafe-negation": "off", // ts(2365) & ts(2360) & ts(2358)
+              "no-var": "error", // ts transpiles let/const to var, so no need for vars any more
+              "prefer-const": "error", // ts provides better types with const
+              "prefer-rest-params": "error", // ts provides better types with rest args over arguments
+              "prefer-spread": "error", // ts transpiles spread to apply, so no need for manual apply
+              "valid-typeof": "off" // ts(2367)
+          }
+      }
+  ]
+}
